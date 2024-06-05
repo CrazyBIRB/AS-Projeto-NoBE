@@ -1,0 +1,219 @@
+body {
+    background-color: #d4f1f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.rounded-navbar {
+    border-radius: 0px; /* Adjust the value to make the corners as round as you want */
+    margin: 0px; /* This will ensure the navbar does not touch the sides */
+    padding: 15px; /* Optional: Add some padding inside the navbar */
+    box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better appearance */
+}
+
+.main-content {
+    display: flex;
+    height: 100%;
+}
+
+.profile-settings {
+    background-color: #189ab4;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Full width for the column */
+    max-width: 450px; /* Max width to ensure the card fits */
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 10px; /* Center horizontally and add bottom margin */
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Add margin between the links and the "Câmaras" card */
+}
+
+.settings ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+}
+
+.settings li {
+    margin-bottom: 5px;
+}
+
+.settings a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.settings a:hover {
+    color: #6c6a6a;
+}
+
+.card.mt-4 {
+    margin-top: 40px; /* Increased margin to move the card further down */
+}
+
+.card {
+    border: none;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+}
+
+.card .card-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.card:hover .card-body {
+    opacity: 1;
+}
+
+.content-section {
+    /* Remove background color, padding, and box shadow */
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    /* Keep other styling */
+    margin-bottom: 20px;
+}
+
+hr {
+    border: none;
+    height: 3px; /* Adjust thickness as needed */
+    background-color: #333; /* Adjust color as needed */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: calc(100vw - 10px); /* Extend the line to the right edge of the screen and leave more space */
+}
+
+.section-box {
+    background-color: #189ab4; /* Change the background color as desired */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo padrão para os botões */
+.btn-primary, .btn-success {
+    background-color: black; /* Cor de fundo preta */
+    color: white;            /* Cor do texto branca */
+    border: none;            /* Sem borda */
+    padding: 10px 20px;      /* Espaçamento interno */
+    cursor: pointer;         /* Cursor de ponteiro ao passar o mouse */
+    transition: background-color 0.3s ease; /* Transição suave para a mudança de cor */
+}
+
+/* Estilo ao passar o mouse */
+.btn-primary:hover, .btn-success:hover {
+    background-color: grey;  /* Cor de fundo cinza */
+}
+
+/* Estilo para o layout horizontal das compras */
+.purchase-list-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 20px; /* Ajuste conforme necessário */
+}
+
+.purchase-list {
+    display: inline-block;
+}
+
+.purchase-item {
+    display: inline-block;
+    margin: 10px;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.purchase-item img {
+    width: 200px; /* Ajuste conforme necessário */
+    height: 200px; /* Ajuste conforme necessário */
+    display: block;
+    margin: auto;
+    object-fit: cover;
+}
+
+.purchase-item .product-type {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.purchase-item .product-details {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+input {
+    display: none;
+}
+
+.settings label {
+    display: inline-block;
+    background-color: #114d8d;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.settings label:hover {
+    background-color: #07607a;
+}
+
+.settings input[type="file"] {
+    display: none;
+}
+

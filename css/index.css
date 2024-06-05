@@ -1,0 +1,180 @@
+body {
+    background-color: #d4f1f4;
+}
+
+/* Carousel height */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel {
+    width: 100%;
+    margin-top: -50px;
+}
+
+.rounded-navbar {
+    padding-top: 1rem; /* Ajuste este valor conforme necessário */
+    padding-bottom: 1rem; /* Ajuste este valor conforme necessário */
+    height: 8vh; /* Ajuste a altura conforme necessário */
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.rounded-navbar .navbar-brand {
+    font-size: 1.5rem; /* Aumente o tamanho do texto da marca, se necessário */
+}
+
+.rounded-navbar .nav-link {
+    font-size: 1.1rem; /* Aumente o tamanho do texto dos links, se necessário */
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+.carousel-item {
+    width: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto; /* Para manter a proporção da imagem */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(107, 69, 69, 0.5); /* Ajuste a cor e opacidade conforme necessário */
+}
+
+.carousel-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay .text {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+.image-container:hover img {
+    filter: blur(50px); /* Apply blur effect on hover */
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 10rem;
+}
+
+.spacer {
+    height: 30vh; /* Adjust this value based on your layout */
+}
+
+/* Ensure all service cards are the same height */
+/* Hover effect for service cards */
+.service-card {
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px; /* Add rounded corners */
+    overflow: hidden; /* Ensure content doesn't overflow rounded corners */
+    border-color: #189ab4;
+}
+
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+/* Change the description text color to white on hover */
+.service-card:hover .card-text {
+    color: rgb(0, 0, 0) !important;
+    transition: color 0.3s ease; /* Smooth transition for text color */
+}
+
+/* Center the card titles and make them stand out */
+#services .card-title {
+    text-align: center;
+    font-size: 1.5rem; /* Increase the font size */
+    font-weight: bold; /* Make the text bold */
+    margin-bottom: 1rem; /* Add some margin below the title */
+    color: #000; /* Ensure title remains black */
+}
+
+/* Ensure the card text is centered as well */
+#services .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #189ab4;
+}
+
+/* Optional: Adjust initial text color for better contrast */
+#services .card-text {
+    color: #555; /* Adjust the text color for better readability */
+    transition: color 0.3s ease; /* Smooth transition for text color */
+}
+
+/* Make the card titles and texts in the services section non-interactable */
+#services .card-title, #services .card-text {
+    pointer-events: none;
+}
+
+/* Style the "Quem somos?" box */
+#about .card {
+    border-radius: 15px; /* Add rounded corners */
+    overflow: hidden; /* Ensure content doesn't overflow rounded corners */
+    background-color: rgba(0, 255, 255, 0.142);
+    border-color: rgba(0, 255, 255, 0.142);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Center the title and text of the "Quem somos?" box */
+#about .card-title, #about .card-text {
+    text-align: center;
+    color: #000; /* Ensure title and text color remains black */
+}
+
+/* Optional: Adjust initial text color for better contrast */
+#about .card-text {
+    color: #000000; /* Adjust the text color for better readability */
+}
+
+
+
+/* Style the "Contactos" box */
+#contact .card {
+    border-radius: 0; /* Remove rounded corners */
+    overflow: hidden; /* Ensure content doesn't overflow rounded corners */
+    background-color: rgba(0, 255, 255, 0.142);
+    border-color: rgba(0, 255, 255, 0.142);
+    width: 100%;
+}
+
+/* Center the title and text of the "Contactos" box */
+#contact .card-title, #contact .card-text {
+    text-align: center;
+    color: #000; /* Ensure title and text color remains black */
+}
+
+/* Optional: Adjust initial text color for better contrast */
+#contact .card-text {
+    color: #000000; /* Adjust the text color for better readability */
+}

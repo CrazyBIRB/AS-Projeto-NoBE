@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotelPets</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark sticky-top rounded-navbar">
+        <a class="navbar-brand" href="{{ url_for('home') }}">HotelPets</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if username %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user') }}">
+                        <i class="fas fa-user"></i>
+                        {{ username }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">
+                        <i class="fas fa-user"></i>
+                        Login
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid main-content">
+        <div class="row mt-4">
+            <!-- Profile Settings -->
+            <div class="col-md-6 profile-settings">
+                <div class="text-center profile-picture rounded-circle">
+                    <img src="{{ url_for('static', filename='images/profilepicture.jpg') }}" alt="Profile Picture">
+                </div>
+                <div class="settings">
+                    <br>
+                    <center>
+                    <ul>
+                        <br>
+                        <label for="input-file">Mudar Foto de Perfil</label>
+                        <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file">
+                        <br>
+                        <label for="input-password">Mudar Password</label>
+                        <input id="input-password">
+                        <br>
+                        <label for="input-email">Mudar Email</label>
+                        <input id="input-email">
+                        <br>
+                    </ul>
+                    </center>
+                </div>
+                <a href="{{ url_for('camaras') }}" class="card" style="margin-top: 100px;">
+                    <img src="{{ url_for('static', filename='images/camaras.jpg') }}" class="card-img-top" alt="Câmaras">
+                    <div class="card-body">
+                        Câmaras
+                    </div>
+                </a>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-6">
+                <h3 style="font-weight: bold;">Histórico de compras</h3>
+                <hr>
+                {% if purchases %}
+                    <div class="purchase-list-container">
+                        <div class="purchase-list">
+                            {% for purchase in purchases %}
+                                <div class="purchase-item">
+                                    {% if purchase[3].startswith('http://') or purchase[3].startswith('https://') %}
+                                        <img src="{{ purchase[3] }}" alt="{{ purchase[0] }}">
+                                    {% else %}
+                                        <img src="{{ purchase[3].strip('\"') }}" alt="{{ purchase[0] }}">
+                                    {% endif %}
+                                    <div class="product-type">{{ purchase[2] }}</div>
+                                    <div class="product-details">
+                                        <div>{{ purchase[0] }}</div>
+                                        <div>{{ purchase[1] }} €</div>
+                                    </div>
+                                    <button class="btn btn-danger btn-sm cancel-btn" data-purchase-id="{{ purchase[4] }}">Cancelar</button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="content-section mb-4" style="text-align: center;">
+                        <div class="section-box">
+                            <p style="font-size: 18px;">Ainda não fez nenhuma compra</p>
+                            <button class="btn btn-primary mt-3" onclick="window.location.href='{{ url_for('alojamento') }}'">Procurar produtos</button>
+                        </div>
+                    </div>
+                {% endif %}
+                <h3 style="font-weight: bold; margin-top: 250px;">Fotografias</h3>
+                <hr>
+                <div class="content-section" style="text-align: center;">
+                    <div class="section-box">
+                        <p style="font-size: 18px;">Ainda não tem nenhuma fotografia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='/js/user.js') }}"></script>
+
+    <!-- JavaScript para confirmação de cancelamento -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cancelButtons = document.querySelectorAll('.cancel-btn');
+            cancelButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    const purchaseId = this.getAttribute('data-purchase-id');
+                    if (confirm('Tem certeza que deseja cancelar esta compra?')) {
+                        // Simulação de envio de solicitação de cancelamento para o backend
+                        alert('Compra ' + purchaseId + ' cancelada.');
+                        // Aqui você pode fazer uma solicitação AJAX para cancelar a compra no servidor
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
