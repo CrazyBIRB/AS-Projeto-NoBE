@@ -65,11 +65,7 @@
             <div class="col-md-6">
                 <h3 style="font-weight: bold;">Histórico de compras</h3>
                 <hr>
-                    <div class="content-section mb-4" style="text-align: center;">
-                        <div class="section-box">
-                            <p style="font-size: 18px;">Ainda não fez nenhuma compra</p>
-                            <button class="btn btn-primary mt-3" onclick="window.location.href='alojamento.html'">Procurar produtos</button>
-                        </div>
+                    <div class="content-section mb-4" style="text-align: center;" id="purchaseHistory">
                     </div>
                 <h3 style="font-weight: bold; margin-top: 250px;">Fotografias</h3>
                 <hr>
@@ -86,23 +82,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='/js/user.js') }}"></script>
+    <script src="../js/user.js"></script>
 
-    <!-- JavaScript para confirmação de cancelamento -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cancelButtons = document.querySelectorAll('.cancel-btn');
-            cancelButtons.forEach(button => {
-                button.addEventListener('click', function(event) {
-                    const purchaseId = this.getAttribute('data-purchase-id');
-                    if (confirm('Tem certeza que deseja cancelar esta compra?')) {
-                        // Simulação de envio de solicitação de cancelamento para o backend
-                        alert('Compra ' + purchaseId + ' cancelada.');
-                        // Aqui você pode fazer uma solicitação AJAX para cancelar a compra no servidor
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>

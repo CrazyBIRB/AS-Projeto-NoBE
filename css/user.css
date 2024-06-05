@@ -217,3 +217,11 @@ input {
     display: none;
 }
 
+.purchase-history {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+

@@ -41,7 +41,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.btn');
     const cartItemsList = document.getElementById('cart-items');
     let cartTotal = 0;
-    const cart = []; // Array to hold cart items
+
+    // Recuperar o carrinho do sessionStorage associado ao usuário, se existir
+    let cart = sessionStorage.getItem('cart');
+    cart = cart ? JSON.parse(cart) : [];
+
+    // Função para atualizar o carrinho na interface do usuário
+    function updateCartUI() {
+        cartItemsList.innerHTML = ''; // Limpar a lista de itens do carrinho
+
+        // Iterar sobre os itens do carrinho e adicionar à lista na interface do usuário
+        cart.forEach(item => {
+            const cartItemElement = document.createElement('li');
+            cartItemElement.innerHTML = `
+                ${item.name} - ${item.price.toFixed(2)} € 
+                <button class="remove-item">Remove</button>
+            `;
+            cartItemsList.appendChild(cartItemElement);
+        });
+
+        // Atualizar o total do carrinho na interface do usuário
+        document.getElementById('cart-total').textContent = `${cartTotal.toFixed(2)} €`;
+    }
+
+    // Função para salvar o carrinho no sessionStorage associado ao usuário
+    function saveCartToSessionStorage() {
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+    }
 
     addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -49,59 +75,51 @@ document.addEventListener('DOMContentLoaded', () => {
             const productName = product.querySelector('h2').textContent;
             const productPrice = parseFloat(product.querySelector('.price').textContent.slice(0));
             const productImage = product.querySelector('img').src;
+            const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser')).username;
 
-            const cartItem = { name: productName, price: productPrice, type: "Loja", image: productImage };
-            cart.push(cartItem); // Add item to the cart array
+            const cartItem = { user: loggedInUser, name : productName, price: productPrice, type: "Loja", image: productImage };
+            cart.push(cartItem); // Adicionar item ao carrinho
+            cartTotal += productPrice; // Atualizar o total do carrinho
 
-            cartTotal += productPrice;
-
-            const cartItemElement = document.createElement('li');
-            cartItemElement.innerHTML = `
-                ${productName} - ${productPrice.toFixed(2)} €
-                <button class="remove-item">Remove</button>
-            `;
-            cartItemsList.appendChild(cartItemElement);
-
-            document.getElementById('cart-total').textContent = `${cartTotal.toFixed(2)} €`;
+            // Atualizar a interface do usuário
+            updateCartUI();
+            // Salvar o carrinho no sessionStorage
+            saveCartToSessionStorage();
         });
     });
 
     cartItemsList.addEventListener('click', event => {
         if (event.target.classList.contains('remove-item')) {
-            const removedItem = event.target.closest('li');
-            const removedPrice = parseFloat(removedItem.textContent.split(' - ')[1].slice(0));
-            const removedItemName = removedItem.textContent.split(' - ')[0];
+            const removedItemIndex = Array.from(cartItemsList.children).indexOf(event.target.parentElement);
+            const removedItemPrice = cart[removedItemIndex].price;
 
-            cartTotal -= removedPrice;
+            cart.splice(removedItemIndex, 1); // Remover item do carrinho
+            cartTotal -= removedItemPrice; // Atualizar o total do carrinho
 
-            // Remove item from the cart array
-            const index = cart.findIndex(item => item.name === removedItemName && item.price === removedPrice);
-            if (index !== -1) {
-                cart.splice(index, 1);
-            }
-
-            removedItem.remove();
-
-            document.getElementById('cart-total').textContent = `${cartTotal.toFixed(2)} €`;
+            // Atualizar a interface do usuário
+            updateCartUI();
+            // Salvar o carrinho no sessionStorage
+            saveCartToSessionStorage();
         }
     });
 
-    // Event listener for the "Finalizar Compra" button
+    // Event listener para o botão "Finalizar Compra"
     document.querySelector('.finalizarCompra').addEventListener('click', () => {
-        fetch('/finalizar_compra', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', },
-            body: JSON.stringify({ items: cart }),
-        }).then(response => {
-            if (response.ok) {
-                alert('Compra finalizada com sucesso!');
-                cart.length = 0; // Clear the cart array
-                cartItemsList.innerHTML = ''; // Clear the cart display
-                cartTotal = 0;
-                document.getElementById('cart-total').textContent = '0.00 €';
-            } else {
-                alert('Ocorreu um erro ao finalizar a compra. Tente novamente.');
-            }
-        });
+        // Obter o histórico de compras do usuário do sessionStorage
+        let purchaseHistory = sessionStorage.getItem('purchaseHistory');
+        purchaseHistory = purchaseHistory ? JSON.parse(purchaseHistory) : [];
+
+        // Adicionar o carrinho atual ao histórico de compras
+        purchaseHistory.push(cart);
+        // Atualizar o histórico de compras no sessionStorage
+        sessionStorage.setItem('purchaseHistory', JSON.stringify(purchaseHistory));
+
+        // Simular finalização da compra
+        alert('Compra finalizada com sucesso!');
+        cart.length = 0;
+        // Atualizar a interface do usuário
+        updateCartUI();
+        sessionStorage.removeItem('cart');
+        document.getElementById('cart-total').textContent = '0.00 €';
     });
 });
