@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva de Pet Sitter</title>
     <link rel="stylesheet" href="../../css/pet-sitting.css">
+    <script src="../../js/reservacamila.js"></script>
     
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -13,35 +14,14 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark sticky-top rounded-navbar">
-        <a class="navbar-brand" href="../../html/index.html">HotelPets</a>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark rounded-navbar">
+        <a class="navbar-brand" href="index.html">HotelPets</a>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <!-- Assuming there's a script to handle user login/logout status -->
-                <!-- Example: 
-                <li class="nav-item">
-                    <a class="nav-link" href="user.html">
-                        <i class="fas fa-user"></i>
-                        Username
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.html">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                    </a>
-                </li>
-                -->
-                <li class="nav-item">
-                    <a class="nav-link" href="../login.html">
-                        <i class="fas fa-user"></i>
-                        Login
-                    </a>
-                </li>
-            </ul>
+            <ul class="navbar-nav ml-auto" id="userNav"></ul>
         </div>
     </nav>
 
@@ -162,6 +142,45 @@
             document.getElementById('end-date').value = '';
             document.getElementById('additional-info').value = '';
         });
+
+        document.addEventListener("DOMContentLoaded", function() {
+    // Verificar se há um usuário logado
+    const loggedInUser = sessionStorage.getItem('loggedInUser');
+
+    // Selecionar o local na barra de navegação onde o nome de usuário deve ser exibido
+    const userNav = document.getElementById('userNav');
+
+    // Verificar se o usuário está logado e atualizar dinamicamente a barra de navegação
+    if (loggedInUser) {
+        const user = JSON.parse(loggedInUser);
+        const username = user.username;
+
+        // Se o usuário estiver logado, exibir o nome de usuário
+        userNav.innerHTML = `
+            <li class="nav-item">
+                <a class="nav-link" href="../user.html">
+                <i class="fas fa-user"></i>
+                ${username}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+        `;
+    } else {
+        // Se o usuário não estiver logado, exibir o link de login
+        userNav.innerHTML = `
+            <li class="nav-item">
+                <a class="nav-link" href="../login.html">
+                    <i class="fas fa-user"></i>
+                    Login     
+                </a>
+            </li>
+        `;
+    }
+});
     </script>
 </body>
 </html>
