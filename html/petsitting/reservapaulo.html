@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva de Pet Sitter</title>
-    <link rel="stylesheet" href="../static/css/pet-sitting.css">
+    <link rel="stylesheet" href="../../css/pet-sitting.css">
     
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -21,27 +21,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            {% if username %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('user') }}">
-                    <i class="fas fa-user"></i>
-                    {{ username }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('logout') }}">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Logout
-                </a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('login') }}">
+                <a class="nav-link" href="../login.html">
                     <i class="fas fa-user"></i>
                     Login     
                 </a>
             </li>
-        {% endif %}
         </ul>
     </div>
   </nav>
@@ -49,7 +34,7 @@
     <div class="container mt-5 pt-5">
         <div class="row">
             <div class="col-md-4 text-center">
-                <img src="../static/images/filipe.png" alt="Paulo Ricardo" class="img-fluid rounded-circle mb-3">
+                <img src="../../images/filipe.png" alt="Paulo Ricardo" class="img-fluid rounded-circle mb-3">
                 <h2>Paulo Ricardo</h2>
                 <p><i class="fas fa-map-marker-alt"></i> Porto</p>
                 <p><strong>Experiência:</strong> 4 anos</p>
