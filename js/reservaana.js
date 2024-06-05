@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Se o usuário estiver logado, exibir o nome de usuário
         userNav.innerHTML = `
             <li class="nav-item">
-                <a class="nav-link" href="user.html">
+                <a class="nav-link" href="../user.html">
                 <i class="fas fa-user"></i>
                 ${username}
             </li>
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Se o usuário não estiver logado, exibir o link de login
         userNav.innerHTML = `
             <li class="nav-item">
-                <a class="nav-link" href="login.html">
+                <a class="nav-link" href="../login.html">
                     <i class="fas fa-user"></i>
                     Login     
                 </a>
