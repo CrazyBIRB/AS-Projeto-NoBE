@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/gridSPA.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleSPA.css') }}">
+    <link rel="stylesheet" href="../css/gridSPA.css">
+    <link rel="stylesheet" href="../css/styleSPA.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -13,34 +13,19 @@
 <div class="page">
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark sticky-top rounded-navbar">
-        <a class="navbar-brand" href="{{ url_for('home') }}">HotelPets</a>
+        <a class="navbar-brand" href="index.html">HotelPets</a>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                {% if username %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('user') }}">
-                        <i class="fas fa-user"></i>
-                        {{ username }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                    </a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">
+                    <a class="nav-link" href="login.html">
                         <i class="fas fa-user"></i>
                         Login     
                     </a>
                 </li>
-            {% endif %}
             </ul>
         </div>
     </nav>
@@ -54,7 +39,7 @@
             <div class="row">
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/BANHO_CAO_3.jpg" alt="">
+                        <img src="../images/BANHO_CAO_3.jpg" alt="">
                         <div class="box-09_cnt" data-equal-group="1">
                             <h4><a>Banhos</a></h4>
                             <p>
@@ -76,7 +61,7 @@
                 </div>
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/dog-grooming1.jpg" alt="">
+                        <img src="../images/dog-grooming1.jpg" alt="">
                         <div class="box-09_cnt" data-equal-group="1">
                             <h4><a>Grooming</a></h4>
                             <p>
@@ -94,7 +79,7 @@
                 </div>
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/hidro_img.jpg" alt="">
+                        <img src="../images/hidro_img.jpg" alt="">
                         <div class="box-09_cnt" data-equal-group="1">
                             <h4><a>Hidroterapia</a></h4>
                             <p>
@@ -133,7 +118,7 @@
             <div class="row">
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/Dog-Shampoo1.png" alt="">
+                        <img src="../images/Dog-Shampoo1.png" alt="">
                         <div class="box-09_cnt" data-equal-group="2">
                             <h4><a>Acessórios</a></h4>
                             <p>
@@ -151,7 +136,7 @@
                 </div>
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/petBook_1.jpg" alt="">
+                        <img src="../images/petBook_1.jpg" alt="">
                         <div class="box-09_cnt" data-equal-group="2">
                             <h4><a>Pet Books</a></h4>
                             <p>
@@ -167,7 +152,7 @@
 
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/dogs_Dom.jpg" alt="">
+                        <img src="../images/dogs_Dom.jpg" alt="">
                         <div class="box-09_cnt" data-equal-group="2">
                             <h4><a>Serviço ao domicilio</a></h4>
                             <p>Podemos trazer e levar o seu amigo. Serviço de comodidade a pensar nas pessoas com menos mobilidade ou que não tenham forma de levar os seus animais.</p>
@@ -195,7 +180,7 @@
             <div class="row">
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/page-3_img07.jpg" alt="">
+                        <img src="../images/page-3_img07.jpg" alt="">
                         <div class="box-09_cnt box-09_padbot01 cnt-bg05">
                             <h4><a>Massagens</a></h4>
                             <p class="price">Relaxamento</p>
@@ -207,7 +192,7 @@
                 </div>
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/page-3_img08.jpg" alt="">
+                        <img src="../images/page-3_img08.jpg" alt="">
                         <div class="box-09_cnt box-09_padbot01 cnt-bg05">
                             <h4><a>Corte unhas</a></h4>
                             <p class="price">Queremos o melhor para eles</p>
@@ -219,7 +204,7 @@
                 </div>
                 <div class="grid_4">
                     <div class="box-09">
-                        <img src="images/page-3_img09.jpg" alt="">
+                        <img src="../images/page-3_img09.jpg" alt="">
                         <div class="box-09_cnt box-09_padbot01 cnt-bg05">
                             <h4><a>Limpeza orelhas</a></h4>
                             <p class="price">Para evitar complicações</p>
